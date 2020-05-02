@@ -1,11 +1,16 @@
 ﻿import discord
 import os
 import datetime
+import mathpix
+from mathpix.mathpix import MathPix
 
 from discord.ext import commands
 
 client = commands.Bot(command_prefix=".")
 time = datetime.datetime.now()
+reader = MathPix(
+    app_id="discalculator_gmail_com_f307ad", app_key="684b628a6ac77aeb3d1f"
+)
 
 
 @client.event
@@ -22,7 +27,9 @@ async def reload(ctx, extension):
 
 @client.command()
 async def test(ctx):
-    await ctx.send("bn")
+    url = ctx.message.attachments[0].url
+    ocr = reader.process_image(image_url=url)
+    await ctx.send(ocr.latex)
 
 
 @client.command()
