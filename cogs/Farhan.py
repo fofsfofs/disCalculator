@@ -1,6 +1,8 @@
 import discord
 from discord.ext import commands
 from mathpix.mathpix import MathPix
+from PIL import Image
+import requests
 
 
 reader = MathPix(
@@ -16,7 +18,21 @@ class Farhan(commands.Cog):
     async def convert(self, ctx):
         url = ctx.message.attachments[0].url
         ocr = reader.process_image(image_url=url)
-        await ctx.send(ocr.latex)
+
+        formula = ocr.latex.replace("\n", " ")
+        r = requests.get(
+            "http://latex.codecogs.com/png.latex?\dpi{{300}} {formula}".format(
+                formula=formula
+            )
+        )
+        f = open("example.png", "wb")
+        f.write(r.content)
+        f.close()
+
+        im = Image.open("example.png")
+        rgb_im = im.convert("RGB")
+        rgb_im.save("pls.jpg")
+        await ctx.send(file=discord.File("pls.jpg"))
 
 
 def setup(client):
