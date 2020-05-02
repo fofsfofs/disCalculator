@@ -1,6 +1,7 @@
 from mathpix.mathpix import MathPix
 from PIL import Image
 import requests
+import wolframalpha
 
 
 reader = MathPix(
@@ -12,14 +13,18 @@ ocr = reader.process_image(
 
 # preview(ocr.latex, filename="output.png")
 
-formula = ocr.latex.replace("\n", " ")
-r = requests.get(
-    "http://latex.codecogs.com/png.latex?\dpi{{300}} {formula}".format(formula=formula)
-)
-f = open("example.png", "wb")
-f.write(r.content)
-f.close()
+# formula = ocr.latex.replace("\n", " ")
+# r = requests.get(
+#     "http://latex.codecogs.com/png.latex?\dpi{{300}} {formula}".format(formula=formula)
+# )
+# f = open("example.png", "wb")
+# f.write(r.content)
+# f.close()
 
-im = Image.open("example.png")
-rgb_im = im.convert("RGB")
-rgb_im.save("pls.jpg")
+# im = Image.open("example.png")
+# rgb_im = im.convert("RGB")
+# rgb_im.save("pls.jpg")
+client = wolframalpha.Client("L766YW-6V34XVRVWG")
+
+res = client.query("solve 12 + 5 x - 8 = 12 x - 10")
+print(next(res.results).text)
