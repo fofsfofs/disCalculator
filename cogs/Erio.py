@@ -7,8 +7,9 @@ class Erio(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def testicles(self, ctx):
-        await ctx.send("HONK")
+    async def calc(self,ctx):
+        url = ctx.message.attachments[0].url
+        await ctx.send('is this your url? {}'.format(url))
 
 
 def setup(client):
