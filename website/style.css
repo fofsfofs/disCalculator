@@ -1,0 +1,127 @@
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+html {
+  font-family: "Jost", sans-serif;
+}
+
+h1 {
+  font-size: 72px;
+  font-weight: bold;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: #f9fafc;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+#intro #discalculator {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+.navbar {
+  height: 80px;
+  background-color: #5789bb;
+}
+
+.navbar ul {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+body {
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
+  margin: 0px;
+  padding: 0px;
+  background-color: #f7f7fc;
+}
+
+body li {
+  float: left;
+  display: block;
+}
+
+body li:hover {
+  background-color: #4b75a0;
+}
+
+body li a {
+  display: block;
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.split {
+  height: 100%;
+  width: 33%;
+  position: fixed;
+  z-index: 1;
+  top: 80;
+  text-align: center;
+}
+
+.left {
+  top: 250px;
+  left: 0;
+}
+
+.left p {
+  font-size: 12px;
+}
+
+.right {
+  top: 250px;
+  right: 0;
+}
+
+.right p {
+  font-size: 12px;
+}
+
+button {
+  background-color: #5789bb;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  -webkit-animation-name: fade;
+          animation-name: fade;
+  -webkit-animation-duration: 5s;
+          animation-duration: 5s;
+  cursor: pointer;
+}
+
+button.hover {
+  background-color: #27537e;
+}
+/*# sourceMappingURL=style.css.map */
