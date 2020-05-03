@@ -35,4 +35,4 @@ for filename in os.listdir("D:/Google Drive/disCalculator/cogs"):
     if filename.endswith(".py"):
         client.load_extension(f"cogs.{filename[:-3]}")
 
-client.run("NzA0Nzk3ODg4MTM1NTYxMzA3.XqyIZQ.9fwMHY6YpI3w_BYgtiA342txXGY")
+client.run("Nice Try")
