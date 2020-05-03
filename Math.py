@@ -1,15 +1,16 @@
 from mathpix.mathpix import MathPix
 from PIL import Image
 import requests
+import wolfram
 import wolframalpha
-
+import time
 
 reader = MathPix(
     app_id="discalculator_gmail_com_f307ad", app_key="684b628a6ac77aeb3d1f"
 )
-ocr = reader.process_image(
-    image_url="https://cdn.discordapp.com/attachments/705540726963961867/706212921348194315/algebra.png"
-)
+# ocr = reader.process_image(
+#     image_url="https://cdn.discordapp.com/attachments/705540726963961867/706212921348194315/algebra.png"
+# )
 
 # preview(ocr.latex, filename="output.png")
 
@@ -24,7 +25,12 @@ ocr = reader.process_image(
 # im = Image.open("example.png")
 # rgb_im = im.convert("RGB")
 # rgb_im.save("pls.jpg")
-client = wolframalpha.Client("L766YW-6V34XVRVWG")
+wolfclient = wolframalpha.Client("L766YW-6V34XVRVWG")
 
-res = client.query("solve 12 + 5 x - 8 = 12 x - 10")
-print(next(res.results).text)
+res = wolfclient.query("integrate e^x")
+print((res.details).get("Indefinite integral"))
+
+# res = wolfclient.query("derivative 3x^2")
+# print((res.details).get("Derivative"))
+
+# print(wolfram.query("derivative", "3 x ^ { 2 }"))
