@@ -74,4 +74,8 @@ def setup(client):
 
         # await ctx.send(embed=embed)
         # await ctx.send(file=discord.File("pls.jpg"))
+<<<<<<< HEAD
         
+=======
+        
+>>>>>>> 9f86ea502fd2fad687513371795b7d46c0f5bf22
