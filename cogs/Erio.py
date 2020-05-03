@@ -14,18 +14,18 @@ class Erio(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    def basecalc(self,query):
+    def basecalc(self, query):
         wolfclient = wolframalpha.Client("L766YW-6V34XVRVWG")
         res = wolfclient.query(query)
 
-        if hasattr(res, 'results'):
+        if hasattr(res, "results"):
             return next(res.results).text
         else:
             return None
 
     def latexToImage(self, somethingelse):
         # url = ctx.message.attachments[0].url
-        
+
         formula = somethingelse.replace("\n", " ")
         r = requests.get(
             "http://latex.codecogs.com/png.latex?\dpi{{300}} {formula}".format(
@@ -45,18 +45,18 @@ class Erio(commands.Cog):
         url = ctx.message.attachments[0].url
         ocr = reader.process_image(image_url=url)
 
-        Erio.latexToImage(self,ocr.latex) 
+        Erio.latexToImage(self, ocr.latex)
         try:
             await ctx.send(file=discord.File("pls.jpg"))
             await ctx.trigger_typing()
-            result = await self.client.loop.run_in_executor(None, Erio.basecalc, self, msg + " " + ocr.latex)
+            result = await self.client.loop.run_in_executor(
+                None, Erio.basecalc, self, msg + " " + ocr.latex
+            )
             await ctx.send(result)
-            await Erio.latexToImage(self,result)
+            await Erio.latexToImage(self, result)
         except:
             await ctx.send("Took too long! Or an unexpected error occurred.")
 
 
 def setup(client):
     client.add_cog(Erio(client))
-
-

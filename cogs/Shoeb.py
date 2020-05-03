@@ -3,20 +3,22 @@ from discord.ext import commands
 from mathpix.mathpix import MathPix
 from PIL import Image
 import requests
-import wolfram
+import wolframalpha
 
 reader = MathPix(
     app_id="discalculator_gmail_com_f307ad", app_key="684b628a6ac77aeb3d1f"
 )
 
+
 class Shoeb(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    def basemath(self,query):
-        res = wolfram.wolfclient.query(query)
+    def basemath(self, query):
+        wolfclient = wolframalpha.Client("L766YW-6V34XVRVWG")
+        res = wolfclient.query(query)
 
-        if hasattr(res, 'results'):
+        if hasattr(res, "results"):
             return next(res.results).text
         else:
             return None
@@ -58,15 +60,19 @@ class Shoeb(commands.Cog):
         rgb_im.save("pls.jpg")
         await ctx.send(file=discord.File("pls.jpg"))
         await ctx.trigger_typing()
-        result = await self.client.loop.run_in_executor(None, Shoeb.basemath, self, msg + " " + ocr.latex)
+        result = await self.client.loop.run_in_executor(
+            None, Shoeb.basemath, self, msg + " " + ocr.latex
+        )
         await ctx.send(result)
 
         try:
             await ctx.send(file=discord.File("pls.jpg"))
             await ctx.trigger_typing()
-            result = await self.client.loop.run_in_executor(None, Shoeb.basemath, self, msg + " " + ocr.latex)
+            result = await self.client.loop.run_in_executor(
+                None, Shoeb.basemath, self, msg + " " + ocr.latex
+            )
             await ctx.send(result)
-            await Shoeb.latexToImage(self,result)
+            await Shoeb.latexToImage(self, result)
         except:
             await ctx.send("Took too long! Or an unexpected error occurred.")
 
