@@ -14,7 +14,7 @@ We used a multitude of technologies for the creation of our bot including the Py
 
 ## How to use the bot
 
-Simply type ``` .code ``` followed by your command and paste an image. To see all the commands, type ``` .help ```
+Simply type ``` .calc ``` followed by your command and paste an image. To see all the commands, type ``` .help ```
 
 Here is an example of how to use the bot:
  
